@@ -1,0 +1,516 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Voice Controlled Notes App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <style>
+            body{
+                background-color: rgb(85, 84, 84);
+            }
+
+            button{
+                cursor: pointer;
+            }
+
+            .btns{
+                height: 10%;
+                width: 15%;
+                position: absolute;
+                left: 42.5%;
+                top: 45%;
+                border: solid whitesmoke;
+                color: whitesmoke;
+                background-color:rgb(85, 84, 84);
+                border-radius: 10px;
+            }
+
+            .btns:hover{
+                transition: 1s;
+                color: rgb(85, 84, 84);
+                background-color: whitesmoke;
+            }
+
+            #note-textarea{
+                background-color: whitesmoke;
+                border-radius: 10px;
+                height: 10%;
+                width: 50%;
+                resize: none;
+                position: absolute;
+                left: 35%;
+                top: 45%;
+                font-family: arial;
+                color: black;
+                display: none;
+            }
+
+            .fa{
+                color: blue;
+                text-align: center;
+                border-radius: 10px;
+                border: none;
+                display: none;
+                text-align: center;
+                width: 100%;
+                background: transparent;
+            }
+
+            .fa:hover{
+                transition: 1s;
+                color: blue;
+            }
+
+            .time{
+                color: white;
+                text-align: center;
+                font-family: arial;
+                font-size: 600%;
+                display: none;
+            }
+
+            .container{
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0%;
+                left: 0%;
+            }
+
+            .weather{
+                position: relative;
+                left: 10%;
+                text-align: center;
+                width: 80%;
+                padding-bottom: 40px;
+            }
+
+            .nice{
+                position: relative;
+            }
+        </style>
+
+        
+
+    </head>
+    <body id="body">
+        <div id="conn" class="container">
+
+
+                <textarea id="note-textarea" placeholder="Talk"></textarea> 
+                <button onclick="setup()" class="btns" id="start-record-btn" title="Start Recording">Welcome</button>
+
+                
+
+
+                <h1 id="showdate" class="time"></h1>
+                
+                
+                <div class="weather">
+                <a id="weather-wide" class="weatherwidget-io" href="https://forecast7.com/en/43d73n79d76/brampton/" data-label_1="BRAMPTON" data-label_2="WEATHER" data-theme="original" >BRAMPTON WEATHER</a>
+                </div>
+
+
+                <div class="nice">
+                    <button id="mic" class="fa fa-microphone" style="font-size:36px"></button>
+                </div>
+                <script>
+                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                </script>
+                
+
+        </div>
+
+
+
+
+
+        
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+
+
+
+
+
+            function check(){
+
+                if(document.getElementById("note-textarea").value == "hey blue" || document.getElementById("note-textarea").value == "Hey Blue" || document.getElementById("note-textarea").value == "okay blue" || document.getElementById("note-textarea").value == "blue" || document.getElementById("note-textarea").value == "a blue"){
+                    document.getElementById("mic").style.display = "block";
+                }
+
+
+                if(document.getElementById("note-textarea").value == "blue play some music" || document.getElementById("note-textarea").value == "hey blue play some music" || document.getElementById("note-textarea").value == "okay blue play some music" || document.getElementById("note-textarea").value == "a blue play some music" || document.getElementById("note-textarea").value == "hey blue can you play some music" || document.getElementById("note-textarea").value == " play some music"){
+                        var audioo = new Audio('https://bluhorse.ca/chill.mp3');
+                        audioo.play();
+                        readOutLoud("Okay, Playing Lofi From Youtube Music");
+                        document.getElementById("mic").style.display = "none";
+                }
+
+                if(document.getElementById("note-textarea").value == "hey blue play Diljit dosanjh" || document.getElementById("note-textarea").value == "hey blue play Diljit Dosanjh"){
+                    var audio = new Audio('https://bluhorse.ca/lambo.mp3');
+                    audio.play();
+                    readOutLoud("Okay, Playing Diljit Dosanjh On Youtube Music");
+                    document.getElementById("mic").style.display = "none";
+                }
+
+
+                if(document.getElementById("note-textarea").value == "hey blue stop"){
+                    audio.stop();
+                    audioo.stop();
+                    readOutLoud("Okay");
+                    document.getElementById("mic").style.display = "none";
+                }
+
+
+
+
+                if(document.getElementById("note-textarea").value == "hey blue what time is it" || document.getElementById("note-textarea").value == "hey blue what's the time"){
+                        var today = new Date();
+                        var hrs = today.getHours();
+                        if(hrs == 13) {
+                            hrs = 1;
+                        }
+
+                        if(hrs == 14) {
+                            hrs = 2;
+                        }
+
+                        if(hrs == 15) {
+                            hrs = 3;
+                        }
+
+                        if(hrs == 16) {
+                            hrs = 4;
+                        }
+
+                        if(hrs == 17) {
+                            hrs = 5;
+                        }
+
+                        if(hrs == 18) {
+                            hrs = 6;
+                        }
+
+                        if(hrs == 19) {
+                            hrs = 7;
+                        }
+
+                        if(hrs == 20) {
+                            hrs = 8;
+                        }
+
+                        if(hrs == 21) {
+                            hrs = 9;
+                        }
+
+                        if(hrs == 22) {
+                            hrs = 10;
+                        }
+
+                        if(hrs == 23) {
+                            hrs = 11;
+                        }
+
+                        if(hrs == 24) {
+                            hrs = 12;
+                        }
+
+                    
+
+
+                        var min = today.getMinutes();
+                        readOutLoud("The Time Is" + hrs );
+                        readOutLoud(min);
+                        document.getElementById("mic").style.display = "none";
+                        
+                }
+
+            }
+            
+
+
+            function time() {
+                var today = new Date();
+                var time = today.getHours();
+
+                        if(time == 13) {
+                            time = 1;
+                        }
+
+                        if(time == 14) {
+                            time = 2;
+                        }
+
+                        if(time == 15) {
+                            time = 3;
+                        }
+
+                        if(time == 16) {
+                            time = 4;
+                        }
+
+                        if(time == 17) {
+                            time = 5;
+                        }
+
+                        if(time == 18) {
+                            time = 6;
+                        }
+
+                        if(time == 19) {
+                            time = 7;
+                        }
+
+                        if(time == 20) {
+                            time = 8;
+                        }
+
+                        if(time == 21) {
+                            time = 9;
+                        }
+
+                        if(time == 22) {
+                            time = 10;
+                        }
+
+                        if(time == 23) {
+                            time = 11;
+                        }
+
+                        if(time == 24) {
+                            time = 12;
+                        }
+
+
+
+
+                var timee = today.getMinutes();
+
+                
+
+                document.getElementById("showdate").innerHTML = time + ":" + timee;
+            }
+
+            time();
+            setInterval(function(){
+            time();
+            }, 2000);
+
+
+            function setup() {
+                document.getElementById("note-textarea").style.display = "block";
+                document.getElementById("start-record-btn").style.display = "none";
+                document.getElementById("body").style.background = "rgb(85, 85, 85)";
+                document.getElementById("mic").style.display = "none";
+                document.getElementById("showdate").style.display = "block";
+                document.getElementById("conn").style.background = "url(backimg.jpeg)";
+                document.getElementById("conn").style.backgroundSize = "100% 100%";
+            }
+            
+
+                        try {
+            var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            var recognition = new SpeechRecognition();
+            }
+            catch(e) {
+            console.error(e);
+            $('.no-browser-support').show();
+            $('.app').hide();
+            }
+
+
+            var noteTextarea = $('#note-textarea');
+            var instructions = $('#recording-instructions');
+            var notesList = $('ul#notes');
+
+            var noteContent = '';
+
+
+            var notes = getAllNotes();
+            renderNotes(notes);
+
+
+
+
+            recognition.continuous = true;
+
+
+            recognition.onresult = function(event) {
+
+                
+
+            
+            var current = event.resultIndex;
+
+            
+            var transcript = event.results[current][0].transcript;
+
+            
+            var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+
+            if(!mobileRepeatBug) {
+                noteContent += transcript;
+                noteTextarea.val(noteContent);
+            }
+
+
+            check();
+            };
+
+            recognition.onstart = function() { 
+            instructions.text('Voice recognition activated. Try speaking into the microphone.');
+            }
+
+            recognition.onspeechend = function() {
+            instructions.text('You were quiet for a while so voice recognition turned itself off.');
+            }
+
+            recognition.onerror = function(event) {
+            if(event.error == 'no-speech') {
+                instructions.text('No speech was detected. Try again.');  
+            };
+            }
+
+
+
+
+
+            $('#start-record-btn').on('click', function(e) {
+            if (noteContent.length) {
+                noteContent += ' ';
+            }
+            recognition.start();
+            });
+
+
+            $('#pause-record-btn').on('click', function(e) {
+            recognition.stop();
+            instructions.text('Voice recognition paused.');
+            });
+
+
+            noteTextarea.on('input', function() {
+            noteContent = $(this).val();
+            })
+
+            $('#save-note-btn').on('click', function(e) {
+            recognition.stop();
+
+            if(!noteContent.length) {
+                instructions.text('Could not save empty note. Please add a message to your note.');
+            }
+            else {
+                
+                saveNote(new Date().toLocaleString(), noteContent);
+
+                
+                noteContent = '';
+                renderNotes(getAllNotes());
+                noteTextarea.val('');
+                instructions.text('Note saved successfully.');
+            }
+                
+            })
+
+
+            notesList.on('click', function(e) {
+            e.preventDefault();
+            var target = $(e.target);
+
+            
+            if(target.hasClass('listen-note')) {
+                var content = target.closest('.note').find('.content').text();
+                readOutLoud(content);
+            }
+
+
+            if(target.hasClass('delete-note')) {
+                var dateTime = target.siblings('.date').text();  
+                deleteNote(dateTime);
+                target.closest('.note').remove();
+            }
+            });
+
+            
+
+
+
+
+            function readOutLoud(message) {
+                var speech = new SpeechSynthesisUtterance();
+
+
+                speech.text = message;
+                speech.volume = 1;
+                speech.rate = 1;
+                speech.pitch = 1;
+            
+                window.speechSynthesis.speak(speech);
+            }
+
+
+
+
+            function renderNotes(notes) {
+            var html = '';
+            if(notes.length) {
+                notes.forEach(function(note) {
+                html+= `<li class="note">
+                    <p class="header">
+                    <span class="date">${note.date}</span>
+                    <a href="#" class="listen-note" title="Listen to Note">Listen to Note</a>
+                    <a href="#" class="delete-note" title="Delete">Delete</a>
+                    </p>
+                    <p class="content">${note.content}</p>
+                </li>`;    
+                });
+            }
+            else {
+                html = '<li><p class="content">You don\'t have any notes yet.</p></li>';
+            }
+            notesList.html(html);
+            }
+
+
+            function saveNote(dateTime, content) {
+            localStorage.setItem('note-' + dateTime, content);
+            }
+
+
+            function getAllNotes() {
+            var notes = [];
+            var key;
+            for (var i = 0; i < localStorage.length; i++) {
+                key = localStorage.key(i);
+
+                if(key.substring(0,5) == 'note-') {
+                notes.push({
+                    date: key.replace('note-',''),
+                    content: localStorage.getItem(localStorage.key(i))
+                });
+                } 
+            }
+            return notes;
+            }
+
+
+            function deleteNote(dateTime) {
+            localStorage.removeItem('note-' + dateTime); 
+            }
+
+
+        </script>
+
+        
+        <script src="https://cdn.tutorialzine.com/misc/enhance/v3.js" async></script>
+
+    </body>
+</html>
+
+
